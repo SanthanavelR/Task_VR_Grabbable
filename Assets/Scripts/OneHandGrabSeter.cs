@@ -9,7 +9,6 @@ public class OneHandGrabSeter : MonoBehaviour
 {
     public GrabHandPos hand = GrabHandPos.Left;
     public bool oneHand;
-    public GameObject canvas;
     Grabbable Grabbable;
     HandGrabInteractable interactable;
     Hand_Find_Objects hand_;
@@ -22,10 +21,7 @@ public class OneHandGrabSeter : MonoBehaviour
     {
         Grabbable = GetComponent<Grabbable>();
         interactable = GetComponent<HandGrabInteractable>();
-        if(!oneHand)
-        {
-            canvas.SetActive(false);
-        }
+       
     }
   
     private void OnTriggerEnter(Collider other)
@@ -40,12 +36,7 @@ public class OneHandGrabSeter : MonoBehaviour
                 {
                     Grabbable.enabled = false;
                     interactable.enabled = false;
-                    if (!canvas.activeInHierarchy)
-                    {
-                        canvas.SetActive(true);
-
-                    }
-
+                   
                     Debug.Log("Disabled");
                     
                 }
@@ -53,7 +44,6 @@ public class OneHandGrabSeter : MonoBehaviour
                 {
                     Grabbable.enabled = true;
                     interactable.enabled = true;
-                    canvas.SetActive(false);
                     Debug.Log("enabled");
 
                 }
@@ -62,17 +52,5 @@ public class OneHandGrabSeter : MonoBehaviour
         
 
     }
-    private void OnTriggerExit(Collider other)
-    {
-
-        if ( hand_.hand == GrabHand.Left || hand_.hand == GrabHand.Right)
-        {
-            if(!canvas.activeInHierarchy)
-            {
-                canvas.SetActive(true);
-
-            }
-
-        }
-    }
+  
 }
